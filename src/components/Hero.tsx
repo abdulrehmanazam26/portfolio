@@ -37,7 +37,7 @@ export function Hero() {
       />
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-12">
         <p className="mb-4 font-body text-caption uppercase tracking-caption text-cyan">
-          Web design · {site.city}
+          {site.role}
         </p>
         <h1 className="font-display text-hero font-extrabold leading-[0.92] tracking-display text-bone">
           <span className="block overflow-hidden">

@@ -17,7 +17,7 @@ const config: Config = {
         body: ['var(--font-body)', 'sans-serif'],
       },
       fontSize: {
-        hero: 'clamp(4.5rem, 2.4rem + 8vw, 11rem)',
+        hero: 'clamp(3rem, 1.2rem + 7vw, 8.5rem)',
         h2: 'clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem)',
         h3: 'clamp(1.5rem, 1.3rem + 0.8vw, 2rem)',
         body: 'clamp(1rem, 0.94rem + 0.3vw, 1.125rem)',

@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="relative border-t border-bone/10 bg-ink px-6 py-10 md:px-12">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <p className="font-body text-caption text-bone/60">
-          {site.name} · {year} · Built in {site.city}
+          {site.name} · {year} · {site.role}
         </p>
         {credits.length > 0 && (
           <p className="font-body text-caption text-bone/40">

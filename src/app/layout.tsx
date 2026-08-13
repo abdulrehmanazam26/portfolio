@@ -24,10 +24,10 @@ const body = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://abdulrehman.dev'),
-  title: `${site.name} — Web design for local businesses in Nürnberg`,
+  title: `${site.name} — Web Design & Development for Small Businesses`,
   description: site.tagline,
   openGraph: {
-    title: `${site.name} — Web design for local businesses in Nürnberg`,
+    title: `${site.name} — Web Design & Development for Small Businesses`,
     description: site.tagline,
     type: 'website',
   },

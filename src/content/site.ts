@@ -1,19 +1,19 @@
 export const site = {
   name: 'Abdulrehman Azam',
   email: 'abdulrehman.azam26@gmail.com',
-  city: 'Nürnberg',
+  role: 'Full-Stack Developer',
   tagline:
-    'I redesign dated websites for small local businesses. Free first draft — you only pay if you like it.',
+    'I design and build fast, modern websites for small businesses. Free first draft — you only pay if you like it.',
 };
 
 export const positioning = {
   eyebrow: 'What I do',
   heading: 'Your website is the first thing a new customer sees.',
-  body: "I'm a software engineering student who builds websites for small businesses on the side — restaurants, florists, shops. Most of them still have a site from years ago. I redesign it, show you the result, and you decide if it's worth paying for.",
+  body: 'I’m a full-stack developer who designs and builds real websites for small businesses — restaurants, florists, shops, showrooms. Most of them still have a site from years ago. I redesign it, show you the real result, and you decide if it’s worth paying for.',
   bullets: [
-    'I work with small local businesses, mostly in and around Nürnberg.',
+    'I work with small businesses that need a real, modern online presence.',
     'You get a free first-draft redesign before you commit to anything.',
-    'I build it myself — you talk to the person doing the work, not a sales team.',
+    'I build it myself, end to end — you talk to the person doing the work, not a sales team.',
     'You only pay if you like what you see.',
   ],
 };
