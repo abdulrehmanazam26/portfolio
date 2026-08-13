@@ -120,14 +120,39 @@ function WorkList2D() {
   );
 }
 
+const TILT_MAX = 8;
+
 function FadeInCard({ project }: { project: Project }) {
-  const [ref, inView] = useInView<HTMLAnchorElement>('-10% 0px');
+  const [inViewRef, inView] = useInView<HTMLAnchorElement>('-10% 0px');
+  const tiltRef = useRef<HTMLAnchorElement | null>(null);
+  const setRefs = (node: HTMLAnchorElement | null) => {
+    (inViewRef as React.MutableRefObject<HTMLAnchorElement | null>).current = node;
+    tiltRef.current = node;
+  };
+
+  const onMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const node = tiltRef.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    node.style.transform = `perspective(900px) rotateX(${(-py * TILT_MAX).toFixed(2)}deg) rotateY(${(px * TILT_MAX).toFixed(2)}deg) translateY(-4px)`;
+  };
+
+  const onMouseLeave = () => {
+    const node = tiltRef.current;
+    if (!node) return;
+    node.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)';
+  };
+
   return (
     <Link
-      ref={ref}
+      ref={setRefs}
       href={`/work/${project.slug}`}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
       className={cn(
-        'glass-panel group block rounded-2xl p-6 transition-all duration-700 ease-signature hover:-translate-y-1 md:p-8',
+        'glass-panel group block rounded-2xl p-6 transition-[transform,opacity] duration-700 ease-signature will-change-transform md:p-8',
         inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0',
       )}
     >

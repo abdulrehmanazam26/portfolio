@@ -29,11 +29,7 @@ export const projects: Project[] = [
     impact:
       'The shop now has a real online presence customers can find, browse, and order from on their phone — the exact gap a walk-in-only florist had before.',
     image: '/work/blooming-bridge/hero.png',
-    gallery: [
-      '/work/blooming-bridge/gallery-1.png',
-      '/work/blooming-bridge/gallery-2.png',
-      '/work/blooming-bridge/gallery-3.png',
-    ],
+    gallery: ['/work/blooming-bridge/gallery-1.png', '/work/blooming-bridge/gallery-2.png'],
   },
   {
     slug: 'asad-marble',

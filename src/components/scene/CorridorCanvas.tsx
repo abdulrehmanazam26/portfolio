@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 
 /**
@@ -21,7 +22,7 @@ export function CorridorCanvas({
       camera={{ fov: 55, near: 0.1, far: 60, position: [0, 0, cameraZ] }}
       onCreated={({ gl }) => gl.setClearColor('#07060B')}
     >
-      {children}
+      <Suspense fallback={null}>{children}</Suspense>
     </Canvas>
   );
 }

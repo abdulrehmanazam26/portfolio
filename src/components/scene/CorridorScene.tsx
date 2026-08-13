@@ -22,8 +22,6 @@ function CameraRig({
   return null;
 }
 
-// `project` is unused for now but kept in the signature: it's where a real
-// texture of the redesign still will come from once one exists (see TODO below).
 function Slab({ index, project: _project }: { index: number; project: Project }) {
   const materialRef = useRef<THREE.MeshStandardMaterial>(null);
   const z = -index * SLAB_SPACING;
@@ -50,8 +48,6 @@ function Slab({ index, project: _project }: { index: number; project: Project })
           metalness={0.1}
         />
       </mesh>
-      {/* TODO(abdulrehman): swap this flat emissive plane for a texture of the
-          project's redesign still once real screenshots exist. */}
     </group>
   );
 }
