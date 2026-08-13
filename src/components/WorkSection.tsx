@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
@@ -10,7 +11,6 @@ import { useSceneCapable } from '@/lib/useSceneCapable';
 import { useInView } from '@/lib/useInView';
 import { projects, type Project } from '@/content/projects';
 import { PlaceholderFrame } from './PlaceholderFrame';
-import { FloristPreview } from './FloristPreview';
 import { BusinessIcon } from './BusinessIcon';
 import { CorridorCanvas } from './scene/CorridorCanvas';
 import { cn } from '@/lib/utils';
@@ -105,7 +105,11 @@ function ProjectCaption({ project }: { project: Project }) {
 
 function WorkList2D() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-24 md:px-12 md:py-32">
+    <div className="relative mx-auto max-w-5xl px-6 py-24 md:px-12 md:py-32">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-x-10 top-0 -z-10 h-[140%] bg-[radial-gradient(ellipse_at_20%_10%,rgba(123,77,255,0.16),transparent_50%),radial-gradient(ellipse_at_80%_60%,rgba(224,56,155,0.14),transparent_50%)] motion-safe:animate-[drift_16s_ease-in-out_infinite]"
+      />
       <h2 className="font-display text-h2 font-bold tracking-display text-bone">Selected work</h2>
       <div className="mt-12 grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
@@ -123,12 +127,24 @@ function FadeInCard({ project }: { project: Project }) {
       ref={ref}
       href={`/work/${project.slug}`}
       className={cn(
-        'glass-panel block rounded-2xl p-6 transition-all duration-700 ease-signature md:p-8',
+        'glass-panel group block rounded-2xl p-6 transition-all duration-700 ease-signature hover:-translate-y-1 md:p-8',
         inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0',
       )}
     >
-      {project.slug === 'project-two' ? (
-        <FloristPreview variant="after" />
+      {project.image ? (
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-bone/10">
+          <Image
+            src={project.image}
+            alt={`${project.name} website preview`}
+            fill
+            sizes="(min-width: 768px) 40vw, 90vw"
+            className="object-cover transition-transform duration-700 ease-signature group-hover:scale-105"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-void/70 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-30"
+          />
+        </div>
       ) : (
         <PlaceholderFrame label={`${project.name} — before / after`} />
       )}
@@ -140,7 +156,7 @@ function FadeInCard({ project }: { project: Project }) {
         {project.name}
       </h3>
       <p className="mt-2 font-body text-body text-bone/75">{project.summary}</p>
-      <span className="mt-4 inline-block font-body text-caption uppercase tracking-caption text-violet">
+      <span className="mt-4 inline-block font-body text-caption uppercase tracking-caption text-violet transition-transform duration-500 ease-signature group-hover:translate-x-1">
         See the work →
       </span>
     </Link>

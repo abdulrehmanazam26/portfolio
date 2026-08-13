@@ -5,6 +5,7 @@ const PATHS: Record<string, string> = {
   Florist:
     'M12 21v-8m0 0a3 3 0 1 0-3-3 3 3 0 0 0 3 3Zm0 0a3 3 0 1 1 3-3 3 3 0 0 1-3 3Zm0-6a3 3 0 1 0-3-3 3 3 0 0 0 3 3Zm0 0a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z',
   Shop: 'M4 8l1-4h14l1 4M4 8v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8M4 8h16M9 12a3 3 0 0 0 6 0',
+  Showroom: 'M3 4h8v8H3V4Zm10 0h8v8h-8V4ZM3 14h8v6H3v-6Zm10 0h8v6h-8v-6Z',
 };
 
 export function BusinessIcon({

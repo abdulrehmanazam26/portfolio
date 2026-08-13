@@ -9,17 +9,14 @@ export type Project = {
   problem: string;
   whatChanged: string;
   impact: string;
-  /** TODO(abdulrehman): replace with a real screenshot path once available. */
-  placeholder: true;
+  /** Hero image shown on the work card and case-study page. */
+  image?: string;
+  /** A couple of supporting shots shown on the case-study page. */
+  gallery?: string[];
+  /** True only for entries that still need real content before going live. */
+  placeholder?: true;
 };
 
-/**
- * TODO(abdulrehman): This file ships with 3 placeholder projects so the
- * corridor and case-study route have real structure to render. Replace each
- * entry with an actual project before this goes live — do not leave
- * `placeholder: true` entries public. Never use a client's name, logo, or
- * screenshots without their permission to go live with it.
- */
 export const projects: Project[] = [
   {
     slug: 'project-one',
@@ -36,29 +33,33 @@ export const projects: Project[] = [
     placeholder: true,
   },
   {
-    slug: 'project-two',
-    name: 'Blüte & Stiel',
+    slug: 'blooming-bridge',
+    name: 'Blooming Bridge Florist',
     businessType: 'Florist',
-    city: site.city,
-    summary: 'Concept redesign — a single unstyled page with a phone number became a real storefront.',
+    city: 'Newcastle West',
+    summary: 'A florist with no website before — now a fast, mobile-first storefront that takes real orders.',
     problem:
-      'The old site was one plain page: a shop name, opening hours, and a phone number in default browser text. No photos of the flowers, no way to see what a bouquet actually looked like, and nothing that worked on a phone — which is how most people would find a florist.',
+      'Blooming Bridge Florist had no site at all — no way for a new customer to see what the shop offered, check prices, or order outside of calling or walking in.',
     whatChanged:
-      'A redesign built around the flowers themselves: a warm, editorial layout with a clear "order now" path, categories for bouquets and occasions, and a mobile-first layout since most visits happen on a phone standing outside the shop.',
+      'A single-page site built around ordering: bouquets organized by occasion, a pricing section so people know what to expect, and an order form that hands straight off to WhatsApp or email — no backend needed, nothing to host or maintain beyond static files.',
     impact:
-      'This one is a concept piece, not a live client yet — built to show the kind of transformation a small florist could expect: from an unreadable text page to a site that actually makes people want to order.',
-    placeholder: true,
+      'The shop now has a real online presence customers can find, browse, and order from on their phone — the exact gap a walk-in-only florist had before.',
+    image: '/work/blooming-bridge/hero.png',
+    gallery: ['/work/blooming-bridge/gallery-1.png', '/work/blooming-bridge/gallery-2.png'],
   },
   {
-    slug: 'project-three',
-    name: 'Project Three',
-    businessType: 'Shop',
-    city: site.city,
-    summary: 'Old site looked closed — no hours, no photos, no clear address.',
-    problem: 'TODO: describe the actual problem for this project.',
-    whatChanged: 'TODO: describe what you actually changed.',
-    impact: 'TODO: describe the real outcome.',
-    placeholder: true,
+    slug: 'asad-marble',
+    name: 'Asad Tile, Marble & Sanitary',
+    businessType: 'Showroom',
+    city: 'Karachi',
+    summary: 'A tile, marble and sanitary showroom — redesigned as a visual catalog customers can browse before visiting.',
+    problem:
+      'A showroom business lives or dies on customers seeing the actual stone and tile finishes — the old presence gave people no way to browse the range before making the trip in.',
+    whatChanged:
+      'A photo-led site organized by category — floor tiles, wall tiles, marble, and sanitary fixtures — with a showroom gallery, direct call and WhatsApp contact, and a map link to the shop in Madina Market.',
+    impact:
+      'Customers can now browse the full range of finishes online first, arrive knowing roughly what they want, and reach the shop directly by phone or WhatsApp.',
+    image: '/work/asad-marble/hero.jpg',
+    gallery: ['/work/asad-marble/gallery-1.jpg', '/work/asad-marble/gallery-2.jpg'],
   },
 ];
-
