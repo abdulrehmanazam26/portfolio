@@ -1,5 +1,3 @@
-import { site } from './site';
-
 export type Project = {
   slug: string;
   name: string;
@@ -19,20 +17,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'project-one',
-    name: 'Project One',
-    businessType: 'Restaurant',
-    city: site.city,
-    summary: 'Old site had no menu online and didn’t work on phones.',
-    problem:
-      'TODO: describe the actual problem — e.g. the old site had no online menu, wasn’t mobile-friendly, and hadn’t been updated in years.',
-    whatChanged:
-      'TODO: describe what you actually changed — new structure, mobile layout, opening hours, menu, photos.',
-    impact:
-      'TODO: describe the real outcome for the business, in their words if possible.',
-    placeholder: true,
-  },
-  {
     slug: 'blooming-bridge',
     name: 'Blooming Bridge Florist',
     businessType: 'Florist',
@@ -45,7 +29,11 @@ export const projects: Project[] = [
     impact:
       'The shop now has a real online presence customers can find, browse, and order from on their phone — the exact gap a walk-in-only florist had before.',
     image: '/work/blooming-bridge/hero.png',
-    gallery: ['/work/blooming-bridge/gallery-1.png', '/work/blooming-bridge/gallery-2.png'],
+    gallery: [
+      '/work/blooming-bridge/gallery-1.png',
+      '/work/blooming-bridge/gallery-2.png',
+      '/work/blooming-bridge/gallery-3.png',
+    ],
   },
   {
     slug: 'asad-marble',
@@ -60,6 +48,10 @@ export const projects: Project[] = [
     impact:
       'Customers can now browse the full range of finishes online first, arrive knowing roughly what they want, and reach the shop directly by phone or WhatsApp.',
     image: '/work/asad-marble/hero.jpg',
-    gallery: ['/work/asad-marble/gallery-1.jpg', '/work/asad-marble/gallery-2.jpg'],
+    gallery: [
+      '/work/asad-marble/gallery-1.jpg',
+      '/work/asad-marble/gallery-2.jpg',
+      '/work/asad-marble/gallery-3.jpg',
+    ],
   },
 ];

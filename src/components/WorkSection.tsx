@@ -21,7 +21,7 @@ export function WorkSection() {
   const capable = useSceneCapable();
 
   return (
-    <section id="work" aria-label="Selected work" className="relative bg-void">
+    <section id="work" aria-label="Selected work" className="relative">
       <p className="sr-only">
         Projects: {projects.map((p) => `${p.name}, ${p.businessType}, ${p.city}`).join('; ')}
       </p>

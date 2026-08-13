@@ -16,7 +16,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex h-[100svh] w-full items-center overflow-hidden bg-void"
+      className="relative flex h-[100svh] w-full items-center overflow-hidden"
     >
       {capable && inView && (
         <div className="absolute inset-0" aria-hidden="true">

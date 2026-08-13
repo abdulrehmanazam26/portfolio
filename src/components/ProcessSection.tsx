@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 export function ProcessSection() {
   return (
-    <section aria-label="How it works" className="relative bg-void px-6 py-32 md:px-12 md:py-48">
+    <section aria-label="How it works" className="relative px-6 py-32 md:px-12 md:py-48">
       <div className="mx-auto max-w-5xl">
         <h2 className="font-display text-h2 font-bold tracking-display text-bone">
           How it works

@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Inter } from 'next/font/google';
 import './globals.css';
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider';
 import { CursorGlow } from '@/components/CursorGlow';
+import { AnimatedBackdrop } from '@/components/AnimatedBackdrop';
 import { site } from '@/content/site';
 
 const display = Bricolage_Grotesque({
@@ -46,6 +47,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <AnimatedBackdrop />
         <CursorGlow />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>

@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 export function Positioning() {
   return (
-    <section aria-label="What I do" className="relative bg-void px-6 py-32 md:px-12 md:py-48">
+    <section aria-label="What I do" className="relative px-6 py-32 md:px-12 md:py-48">
       <div className="mx-auto max-w-4xl">
         <GlassPanel className="md:w-4/5">
           <p className="mb-4 font-body text-caption uppercase tracking-caption text-cyan">

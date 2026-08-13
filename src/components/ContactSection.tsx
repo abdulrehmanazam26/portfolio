@@ -4,7 +4,7 @@ import { contact, site } from '@/content/site';
 
 export function ContactSection() {
   return (
-    <section id="contact" aria-label="Contact" className="relative bg-void px-6 py-32 md:px-12 md:py-48">
+    <section id="contact" aria-label="Contact" className="relative px-6 py-32 md:px-12 md:py-48">
       <div className="mx-auto max-w-2xl text-center">
         <GlassPanel className="mx-auto">
           <h2 className="font-display text-h2 font-bold tracking-display text-bone">

@@ -25,7 +25,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   if (!project) notFound();
 
   return (
-    <main id="main" className="min-h-screen bg-void px-6 py-16 md:px-12 md:py-24">
+    <main id="main" className="min-h-screen px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto max-w-2xl">
         <Link
           href="/#work"
@@ -71,7 +71,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             What I changed
           </h2>
           {project.gallery && project.gallery.length > 0 ? (
-            <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {project.gallery.map((src) => (
                 <div
                   key={src}
