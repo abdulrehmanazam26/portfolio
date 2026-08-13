@@ -37,13 +37,16 @@ export const projects: Project[] = [
   },
   {
     slug: 'project-two',
-    name: 'Project Two',
+    name: 'Blüte & Stiel',
     businessType: 'Florist',
     city: site.city,
-    summary: 'Old site was a single unstyled page with a phone number.',
-    problem: 'TODO: describe the actual problem for this project.',
-    whatChanged: 'TODO: describe what you actually changed.',
-    impact: 'TODO: describe the real outcome.',
+    summary: 'Concept redesign — a single unstyled page with a phone number became a real storefront.',
+    problem:
+      'The old site was one plain page: a shop name, opening hours, and a phone number in default browser text. No photos of the flowers, no way to see what a bouquet actually looked like, and nothing that worked on a phone — which is how most people would find a florist.',
+    whatChanged:
+      'A redesign built around the flowers themselves: a warm, editorial layout with a clear "order now" path, categories for bouquets and occasions, and a mobile-first layout since most visits happen on a phone standing outside the shop.',
+    impact:
+      'This one is a concept piece, not a live client yet — built to show the kind of transformation a small florist could expect: from an unreadable text page to a site that actually makes people want to order.',
     placeholder: true,
   },
   {

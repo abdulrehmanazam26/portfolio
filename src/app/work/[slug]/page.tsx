@@ -3,7 +3,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { projects } from '@/content/projects';
 import { PlaceholderFrame } from '@/components/PlaceholderFrame';
+import { FloristPreview } from '@/components/FloristPreview';
 import { site } from '@/content/site';
+
+const isFlorist = (slug: string) => slug === 'project-two';
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -43,7 +46,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <h2 className="font-display text-h3 font-bold tracking-display text-bone">
             The problem
           </h2>
-          <PlaceholderFrame label={`${project.name} — before`} className="mt-6" />
+          {isFlorist(project.slug) ? (
+            <FloristPreview variant="before" className="mt-6" />
+          ) : (
+            <PlaceholderFrame label={`${project.name} — before`} className="mt-6" />
+          )}
           <p className="mt-6 font-body text-body leading-relaxed text-bone/80">
             {project.problem}
           </p>
@@ -53,7 +60,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <h2 className="font-display text-h3 font-bold tracking-display text-bone">
             What I changed
           </h2>
-          <PlaceholderFrame label={`${project.name} — after`} className="mt-6" />
+          {isFlorist(project.slug) ? (
+            <FloristPreview variant="after" className="mt-6" />
+          ) : (
+            <PlaceholderFrame label={`${project.name} — after`} className="mt-6" />
+          )}
           <p className="mt-6 font-body text-body leading-relaxed text-bone/80">
             {project.whatChanged}
           </p>

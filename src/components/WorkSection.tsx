@@ -10,6 +10,8 @@ import { useSceneCapable } from '@/lib/useSceneCapable';
 import { useInView } from '@/lib/useInView';
 import { projects, type Project } from '@/content/projects';
 import { PlaceholderFrame } from './PlaceholderFrame';
+import { FloristPreview } from './FloristPreview';
+import { BusinessIcon } from './BusinessIcon';
 import { CorridorCanvas } from './scene/CorridorCanvas';
 import { cn } from '@/lib/utils';
 
@@ -125,8 +127,13 @@ function FadeInCard({ project }: { project: Project }) {
         inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0',
       )}
     >
-      <PlaceholderFrame label={`${project.name} — before / after`} />
-      <p className="mt-6 font-body text-caption uppercase tracking-caption text-cyan">
+      {project.slug === 'project-two' ? (
+        <FloristPreview variant="after" />
+      ) : (
+        <PlaceholderFrame label={`${project.name} — before / after`} />
+      )}
+      <p className="mt-6 flex items-center gap-1.5 font-body text-caption uppercase tracking-caption text-cyan">
+        <BusinessIcon type={project.businessType} className="h-3.5 w-3.5" />
         {project.businessType} · {project.city}
       </p>
       <h3 className="mt-2 font-display text-h3 font-bold tracking-display text-bone">
