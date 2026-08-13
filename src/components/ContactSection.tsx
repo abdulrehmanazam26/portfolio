@@ -1,4 +1,5 @@
 import { GlassPanel } from './GlassPanel';
+import { MagneticButton } from './MagneticButton';
 import { contact, site } from '@/content/site';
 
 export function ContactSection() {
@@ -10,12 +11,13 @@ export function ContactSection() {
             {contact.heading}
           </h2>
           <p className="mt-4 font-body text-body text-bone/75">{contact.body}</p>
-          <a
+          <MagneticButton
+            as="a"
             href={`mailto:${site.email}`}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 font-body text-body font-medium text-bone transition-transform duration-500 ease-signature hover:-translate-y-0.5 hover:bg-magenta"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 font-body text-body font-medium text-bone hover:bg-magenta"
           >
             {contact.ctaLabel} <span aria-hidden="true">→</span>
-          </a>
+          </MagneticButton>
           <p className="mt-4 font-body text-caption text-bone/50">{site.email}</p>
         </GlassPanel>
       </div>

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { projects } from '@/content/projects';
 import { PlaceholderFrame } from '@/components/PlaceholderFrame';
+import { MagneticButton } from '@/components/MagneticButton';
 import { site } from '@/content/site';
 
 export function generateStaticParams() {
@@ -103,12 +104,13 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </p>
         </section>
 
-        <a
+        <MagneticButton
+          as="a"
           href={`mailto:${site.email}`}
-          className="mt-16 inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 font-body text-body font-medium text-bone transition-transform duration-500 ease-signature hover:-translate-y-0.5 hover:bg-magenta"
+          className="mt-16 inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 font-body text-body font-medium text-bone hover:bg-magenta"
         >
           Email me <span aria-hidden="true">→</span>
-        </a>
+        </MagneticButton>
       </div>
     </main>
   );
