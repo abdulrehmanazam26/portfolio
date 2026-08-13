@@ -9,6 +9,8 @@ export type Project = {
   impact: string;
   /** Hero image shown on the work card and case-study page. */
   image?: string;
+  /** Lightweight version of `image`, used as a WebGL texture in the 3D corridor. */
+  texture?: string;
   /** A couple of supporting shots shown on the case-study page. */
   gallery?: string[];
   /** True only for entries that still need real content before going live. */
@@ -29,6 +31,7 @@ export const projects: Project[] = [
     impact:
       'The shop now has a real online presence customers can find, browse, and order from on their phone — the exact gap a walk-in-only florist had before.',
     image: '/work/blooming-bridge/hero.png',
+    texture: '/work/blooming-bridge/texture.jpg',
     gallery: ['/work/blooming-bridge/gallery-1.png', '/work/blooming-bridge/gallery-2.png'],
   },
   {
@@ -44,6 +47,7 @@ export const projects: Project[] = [
     impact:
       'Customers can now browse the full range of finishes online first, arrive knowing roughly what they want, and reach the shop directly by phone or WhatsApp.',
     image: '/work/asad-marble/hero.jpg',
+    texture: '/work/asad-marble/texture.jpg',
     gallery: [
       '/work/asad-marble/gallery-1.jpg',
       '/work/asad-marble/gallery-2.jpg',

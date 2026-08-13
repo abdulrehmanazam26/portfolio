@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import type { Project } from '@/content/projects';
 
@@ -22,11 +23,12 @@ function CameraRig({
   return null;
 }
 
-function Slab({ index, project: _project }: { index: number; project: Project }) {
+function Slab({ index, project }: { index: number; project: Project }) {
   const materialRef = useRef<THREE.MeshStandardMaterial>(null);
   const z = -index * SLAB_SPACING;
   const side = index % 2 === 0 ? -1 : 1;
   const litColor = index % 2 === 0 ? '#7B4DFF' : '#E0389B';
+  const texture = useTexture(project.texture ?? project.image ?? '/work/blooming-bridge/hero.png');
 
   useFrame((state) => {
     if (!materialRef.current) return;
@@ -41,7 +43,7 @@ function Slab({ index, project: _project }: { index: number; project: Project })
         <planeGeometry args={[2.6, 3.4]} />
         <meshStandardMaterial
           ref={materialRef}
-          color="#12101C"
+          map={texture}
           emissive={litColor}
           emissiveIntensity={0.05}
           roughness={0.4}
