@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void: #07060b;
+  --ink: #12101c;
+  --violet: #7b4dff;
+  --magenta: #e0389b;
+  --cyan: #3de0e8;
+  --bone: #edeaf5;
+
+  --violet-dim: rgba(123, 77, 255, 0.35);
+  --magenta-dim: rgba(224, 56, 155, 0.35);
+  --scrim: rgba(7, 6, 11, 0.7);
+
+  --glass-bg: rgba(18, 16, 28, 0.55);
+  --glass-border: rgba(237, 234, 245, 0.08);
+  --glass-blur: 20px;
+
+  --ease-signature: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-reveal: 0.9s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis owns smooth scroll; native stays instant so it never fights it */
+}
+
+body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: var(--font-body), 'Geist', 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--violet);
+  color: var(--void);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--void), 0 0 0 4px var(--cyan);
+  border-radius: 2px;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+@keyframes reveal-word-in {
+  from {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.reveal-word {
+  animation: reveal-word-in var(--dur-reveal) var(--ease-signature) both;
+}
+
+@keyframes lightsweep {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translateX(-4%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(4%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
