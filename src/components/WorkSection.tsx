@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import gsap from 'gsap';
@@ -125,10 +125,13 @@ const TILT_MAX = 8;
 function FadeInCard({ project }: { project: Project }) {
   const [inViewRef, inView] = useInView<HTMLAnchorElement>('-10% 0px');
   const tiltRef = useRef<HTMLAnchorElement | null>(null);
-  const setRefs = (node: HTMLAnchorElement | null) => {
-    (inViewRef as React.MutableRefObject<HTMLAnchorElement | null>).current = node;
-    tiltRef.current = node;
-  };
+  const setRefs = useCallback(
+    (node: HTMLAnchorElement | null) => {
+      (inViewRef as React.MutableRefObject<HTMLAnchorElement | null>).current = node;
+      tiltRef.current = node;
+    },
+    [inViewRef],
+  );
 
   const onMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const node = tiltRef.current;
