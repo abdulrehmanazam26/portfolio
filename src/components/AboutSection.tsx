@@ -88,7 +88,7 @@ export function AboutSection() {
             Full-stack developer, building real sites for real businesses.
           </h2>
           <p className="mt-6 max-w-xl font-body text-body text-bone/75">
-            I design and build complete websites end to end — the two projects in the work
+            I design and build complete websites end to end — the projects in the work
             section above are live sites, not mockups. From the interface down to the
             backend, everything here is my own work.
           </p>

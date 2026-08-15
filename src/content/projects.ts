@@ -58,4 +58,36 @@ export const projects: Project[] = [
       '/work/asad-marble/gallery-3.jpg',
     ],
   },
+  {
+    slug: 'brut-burgers',
+    name: 'Brut',
+    businessType: 'Restaurant',
+    city: 'Karachi',
+    summary: 'A fried chicken burger restaurant with a bold, dark brand identity and a full online ordering site.',
+    problem:
+      'A new burger restaurant needed a launch site that matched the ambition of the brand — not a generic food-delivery template, but something with real visual identity.',
+    whatChanged:
+      'A dark, editorial site built around the brand — a bold wordmark, product photography front and center, and a direct path from browsing the menu to ordering.',
+    impact:
+      'The site gives the restaurant a launch presence that looks and feels like an established brand from day one, with ordering built in rather than bolted on.',
+    image: '/work/burgers/hero.png',
+    liveUrl: 'https://burgers-bice.vercel.app',
+    gallery: ['/work/burgers/gallery-1.png', '/work/burgers/gallery-2.png'],
+  },
+  {
+    slug: 'vayani-medico',
+    name: 'Vayani Medico',
+    businessType: 'Pharmacy',
+    city: 'Karachi',
+    summary: 'An 11-year-old neighborhood pharmacy, rebuilt as a full online store for medicines and healthcare essentials.',
+    problem:
+      'A trusted local pharmacy had no way for customers to browse or order online — everything depended on a phone call or a walk-in visit.',
+    whatChanged:
+      'A proper e-commerce build: categories for medicines, personal care, baby care and more, a searchable product catalog with stock and pricing, and a cart that leads straight to checkout or WhatsApp ordering.',
+    impact:
+      'Customers can now search for a specific medicine, see what is in stock, and order it for delivery — turning 11 years of local trust into an online storefront.',
+    image: '/work/medical/hero.png',
+    liveUrl: 'https://medical-xi-ruby.vercel.app',
+    gallery: ['/work/medical/gallery-1.png'],
+  },
 ];
