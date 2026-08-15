@@ -7,6 +7,8 @@ export type Project = {
   problem: string;
   whatChanged: string;
   impact: string;
+  /** Public production URL opened from the project card and case study. */
+  liveUrl: string;
   /** Hero image shown on the work card and case-study page. */
   image?: string;
   /** Lightweight version of `image`, used as a WebGL texture in the 3D corridor. */
@@ -31,6 +33,7 @@ export const projects: Project[] = [
     impact:
       'The shop now has a real online presence customers can find, browse, and order from on their phone — the exact gap a walk-in-only florist had before.',
     image: '/work/blooming-bridge/hero.png',
+    liveUrl: 'https://site-six-beige-60.vercel.app',
     texture: '/work/blooming-bridge/texture.jpg',
     gallery: ['/work/blooming-bridge/gallery-1.png', '/work/blooming-bridge/gallery-2.png'],
   },
@@ -47,6 +50,7 @@ export const projects: Project[] = [
     impact:
       'Customers can now browse the full range of finishes online first, arrive knowing roughly what they want, and reach the shop directly by phone or WhatsApp.',
     image: '/work/asad-marble/hero.jpg',
+    liveUrl: 'https://marbel-mu.vercel.app',
     texture: '/work/asad-marble/texture.jpg',
     gallery: [
       '/work/asad-marble/gallery-1.jpg',

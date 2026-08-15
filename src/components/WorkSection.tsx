@@ -68,7 +68,9 @@ function FadeInCard({ project }: { project: Project }) {
   return (
     <Link
       ref={setRefs}
-      href={`/work/${project.slug}`}
+      href={project.liveUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       className={cn(
@@ -102,7 +104,7 @@ function FadeInCard({ project }: { project: Project }) {
       </h3>
       <p className="mt-2 font-body text-body text-bone/75">{project.summary}</p>
       <span className="mt-4 inline-block font-body text-caption uppercase tracking-caption text-violet transition-transform duration-500 ease-signature group-hover:translate-x-1">
-        See the work →
+        Visit live site →
       </span>
     </Link>
   );

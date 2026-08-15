@@ -104,13 +104,24 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </p>
         </section>
 
-        <MagneticButton
-          as="a"
-          href={`mailto:${site.email}`}
-          className="mt-16 inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 font-body text-body font-medium text-bone hover:bg-magenta"
-        >
-          Email me <span aria-hidden="true">→</span>
-        </MagneticButton>
+        <div className="mt-16 flex flex-wrap gap-4">
+          <MagneticButton
+            as="a"
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 font-body text-body font-medium text-bone hover:bg-magenta"
+          >
+            Visit live website <span aria-hidden="true">→</span>
+          </MagneticButton>
+          <MagneticButton
+            as="a"
+            href={`mailto:${site.email}`}
+            className="inline-flex items-center gap-2 rounded-full border border-bone/20 px-8 py-4 font-body text-body font-medium text-bone hover:border-cyan hover:text-cyan"
+          >
+            Email me <span aria-hidden="true">→</span>
+          </MagneticButton>
+        </div>
       </div>
     </main>
   );
