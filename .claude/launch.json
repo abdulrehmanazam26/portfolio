@@ -6,29 +6,6 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
-    },
-    {
-      "name": "architecture-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "--prefix",
-        "C:\\Users\\arehman\\Documents\\projects\\architecture",
-        "run",
-        "dev"
-      ],
-      "port": 3100,
-      "autoPort": true
-    },
-    {
-      "name": "architecture-prod",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "--prefix",
-        "C:\\Users\\arehman\\Documents\\projects\\architecture",
-        "start"
-      ],
-      "port": 3200,
-      "autoPort": true
     }
   ]
 }
