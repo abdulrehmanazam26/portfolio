@@ -17,6 +17,16 @@ const skills = [
     icon: 'M4 4h16v16H4V4Zm3 9v-1h6M9 12v6M14 12v6h3',
   },
   {
+    title: 'AI & chatbots',
+    body: 'AI-powered chatbots and assistants, wired into a real product — not a demo, a feature customers actually use.',
+    icon: 'M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z',
+  },
+  {
+    title: 'E-commerce',
+    body: 'Full online stores — product catalogs, cart and checkout flows, built for businesses that actually sell online.',
+    icon: 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 4.6A1 1 0 0 0 5.6 19H17M9 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z',
+  },
+  {
     title: 'Design & motion',
     body: 'Tailwind for layout, GSAP and Framer Motion for the kind of movement that makes a site feel alive.',
     icon: 'M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83',

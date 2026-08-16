@@ -3,18 +3,18 @@ export const site = {
   email: 'abdulrehman.azam26@gmail.com',
   role: 'Full-Stack Developer',
   tagline:
-    'I design and build fast, modern websites for small businesses. Free first draft — you only pay if you like it.',
+    'I design and build complete digital products — websites, e-commerce, and AI-powered tools. Free first draft — you only pay if you like it.',
 };
 
 export const positioning = {
   eyebrow: 'What I do',
-  heading: 'Your website is the first thing a new customer sees.',
-  body: 'I’m a full-stack developer who designs and builds real websites for small businesses — restaurants, florists, shops, showrooms. Most of them still have a site from years ago. I redesign it, show you the real result, and you decide if it’s worth paying for.',
+  heading: 'A full-stack developer, not just a website builder.',
+  body: 'I design and build complete digital products end to end — marketing sites, e-commerce stores, and AI-powered chatbots, backed by real backends and databases when a project needs them. Every project in the work section above is a live, production site I built myself, not a mockup.',
   bullets: [
-    'I work with small businesses that need a real, modern online presence.',
+    'End-to-end builds — design, frontend, backend, and deployment, all handled by one person.',
+    'AI chatbots and automation, integrated into the product itself, not bolted on.',
+    'Real, live projects across restaurants, e-commerce, healthcare, and services.',
     'You get a free first-draft redesign before you commit to anything.',
-    'I build it myself, end to end — you talk to the person doing the work, not a sales team.',
-    'You only pay if you like what you see.',
   ],
 };
 
