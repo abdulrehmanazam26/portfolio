@@ -11,29 +11,24 @@ import { cn } from '@/lib/utils';
 
 export function WorkSection() {
   return (
-    <section id="work" aria-label="Selected work" className="relative">
+    <section id="work" aria-label="Selected work" className="relative px-6 py-24 md:px-12 md:py-32">
       <p className="sr-only">
         Projects: {projects.map((p) => `${p.name}, ${p.businessType}, ${p.city}`).join('; ')}
       </p>
-      <WorkList2D />
-    </section>
-  );
-}
-
-function WorkList2D() {
-  return (
-    <div className="relative mx-auto max-w-5xl px-6 py-24 md:px-12 md:py-32">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -inset-x-10 top-0 -z-10 h-[140%] bg-[radial-gradient(ellipse_at_20%_10%,rgba(123,77,255,0.16),transparent_50%),radial-gradient(ellipse_at_80%_60%,rgba(224,56,155,0.14),transparent_50%)] motion-safe:animate-[drift_16s_ease-in-out_infinite]"
-      />
-      <h2 className="font-display text-h2 font-bold tracking-display text-bone">Selected work</h2>
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
-        {projects.map((project) => (
-          <FadeInCard key={project.slug} project={project} />
-        ))}
+      <div className="mx-auto max-w-5xl">
+        <p className="mb-3 font-body text-caption uppercase tracking-caption text-cyan">Work</p>
+        <h2 className="font-display text-h2 font-bold tracking-display text-bone">My Projects</h2>
+        <p className="mt-4 max-w-xl font-body text-body text-bone/75">
+          Live websites I built and deployed myself — click through to see each one running in
+          production.
+        </p>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {projects.map((project) => (
+            <FadeInCard key={project.slug} project={project} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -82,8 +77,9 @@ function FadeInCard({ project }: { project: Project }) {
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-bone/10">
           <Image
             src={project.image}
-            alt={`${project.name} website preview`}
+            alt={`${project.name} website homepage`}
             fill
+            loading="lazy"
             sizes="(min-width: 768px) 40vw, 90vw"
             className="object-cover transition-transform duration-700 ease-signature group-hover:scale-105"
           />
@@ -103,8 +99,18 @@ function FadeInCard({ project }: { project: Project }) {
         {project.name}
       </h3>
       <p className="mt-2 font-body text-body text-bone/75">{project.summary}</p>
+      <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Technologies used">
+        {project.tags.map((tag) => (
+          <li
+            key={tag}
+            className="rounded-full border border-bone/15 px-2.5 py-1 font-body text-[0.7rem] uppercase tracking-caption text-bone/60"
+          >
+            {tag}
+          </li>
+        ))}
+      </ul>
       <span className="mt-4 inline-block font-body text-caption uppercase tracking-caption text-violet transition-transform duration-500 ease-signature group-hover:translate-x-1">
-        Visit live site →
+        Visit Live Site →
       </span>
     </Link>
   );

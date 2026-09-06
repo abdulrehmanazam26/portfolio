@@ -4,7 +4,6 @@ import './globals.css';
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider';
 import { CursorGlow } from '@/components/CursorGlow';
 import { AnimatedBackdrop } from '@/components/AnimatedBackdrop';
-import { site } from '@/content/site';
 
 const display = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -22,14 +21,25 @@ const body = Inter({
   display: 'swap',
 });
 
+const SITE_URL = 'https://portfolio-black-three-92.vercel.app';
+const TITLE = 'Abdul Rehman Azam | Full-Stack Developer & AI Automation';
+const DESCRIPTION =
+  'Full-stack developer specializing in PHP, JavaScript, WordPress, REST API integrations, and backend support, currently expanding into AI agents, chatbot workflows, and business automation.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://abdulrehman.dev'),
-  title: `${site.name} — Web Design & Development for Small Businesses`,
-  description: site.tagline,
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
   openGraph: {
-    title: `${site.name} — Web Design & Development for Small Businesses`,
-    description: site.tagline,
+    title: TITLE,
+    description: DESCRIPTION,
     type: 'website',
+    url: SITE_URL,
+  },
+  twitter: {
+    card: 'summary',
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 

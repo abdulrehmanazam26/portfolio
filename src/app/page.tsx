@@ -1,21 +1,27 @@
+import { Nav } from '@/components/Nav';
 import { Hero } from '@/components/Hero';
-import { Positioning } from '@/components/Positioning';
-import { WorkSection } from '@/components/WorkSection';
 import { AboutSection } from '@/components/AboutSection';
-import { ProcessSection } from '@/components/ProcessSection';
+import { SkillsSection } from '@/components/SkillsSection';
+import { WorkSection } from '@/components/WorkSection';
+import { AIFocusSection } from '@/components/AIFocusSection';
+import { ExperienceSection } from '@/components/ExperienceSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main id="main">
-      <Hero />
-      <Positioning />
-      <WorkSection />
-      <AboutSection />
-      <ProcessSection />
-      <ContactSection />
+    <>
+      <Nav />
+      <main id="main">
+        <Hero />
+        <AboutSection />
+        <SkillsSection />
+        <WorkSection />
+        <AIFocusSection />
+        <ExperienceSection />
+        <ContactSection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

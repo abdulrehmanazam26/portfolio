@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { projects } from '@/content/projects';
-import { PlaceholderFrame } from '@/components/PlaceholderFrame';
 import { MagneticButton } from '@/components/MagneticButton';
 import { site } from '@/content/site';
 
@@ -31,7 +30,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           href="/#work"
           className="font-body text-caption uppercase tracking-caption text-bone/60 hover:text-cyan"
         >
-          ← Back
+          ← Back to projects
         </Link>
 
         <p className="mt-8 font-body text-caption uppercase tracking-caption text-cyan">
@@ -41,11 +40,22 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           {project.name}
         </h1>
 
+        <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies used">
+          {project.tags.map((tag) => (
+            <li
+              key={tag}
+              className="rounded-full border border-bone/15 px-3 py-1 font-body text-caption text-bone/70"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
+
         {project.image && (
-          <div className="relative mt-10 aspect-[16/10] w-full overflow-hidden rounded-2xl border border-bone/10">
+          <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden rounded-2xl border border-bone/10">
             <Image
               src={project.image}
-              alt={`${project.name} website preview`}
+              alt={`${project.name} website homepage`}
               fill
               sizes="(min-width: 768px) 42rem, 100vw"
               priority
@@ -54,57 +64,31 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </div>
         )}
 
-        <section className="mt-16">
-          <h2 className="font-display text-h3 font-bold tracking-display text-bone">
-            The problem
-          </h2>
-          {!project.image && (
-            <PlaceholderFrame label={`${project.name} — before`} className="mt-6" />
-          )}
-          <p className="mt-6 font-body text-body leading-relaxed text-bone/80">
-            {project.problem}
-          </p>
-        </section>
+        <p className="mt-8 font-body text-body leading-relaxed text-bone/80">
+          {project.description}
+        </p>
 
-        <section className="mt-16">
-          <h2 className="font-display text-h3 font-bold tracking-display text-bone">
-            What I changed
-          </h2>
-          {project.gallery && project.gallery.length > 0 ? (
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {project.gallery.map((src) => (
-                <div
-                  key={src}
-                  className="relative aspect-square overflow-hidden rounded-xl border border-bone/10"
-                >
-                  <Image
-                    src={src}
-                    alt={`${project.name} — detail`}
-                    fill
-                    sizes="(min-width: 768px) 20rem, 45vw"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <PlaceholderFrame label={`${project.name} — after`} className="mt-6" />
-          )}
-          <p className="mt-6 font-body text-body leading-relaxed text-bone/80">
-            {project.whatChanged}
-          </p>
-        </section>
+        {project.gallery && project.gallery.length > 0 && (
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {project.gallery.map((src) => (
+              <div
+                key={src}
+                className="relative aspect-square overflow-hidden rounded-xl border border-bone/10"
+              >
+                <Image
+                  src={src}
+                  alt={`${project.name} — additional page detail`}
+                  fill
+                  loading="lazy"
+                  sizes="(min-width: 768px) 20rem, 45vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
-        <section className="mt-16">
-          <h2 className="font-display text-h3 font-bold tracking-display text-bone">
-            What it does for their business
-          </h2>
-          <p className="mt-6 font-body text-body leading-relaxed text-bone/80">
-            {project.impact}
-          </p>
-        </section>
-
-        <div className="mt-16 flex flex-wrap gap-4">
+        <div className="mt-12 flex flex-wrap gap-4">
           <MagneticButton
             as="a"
             href={project.liveUrl}
@@ -112,7 +96,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 font-body text-body font-medium text-bone hover:bg-magenta"
           >
-            Visit live website <span aria-hidden="true">→</span>
+            Visit live site <span aria-hidden="true">→</span>
           </MagneticButton>
           <MagneticButton
             as="a"

@@ -1,15 +1,8 @@
 'use client';
 
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { useReducedMotion } from '@/lib/useReducedMotion';
-
-const LenisContext = createContext<Lenis | null>(null);
-
-/** Lets the corridor scene hook GSAP's ScrollTrigger to Lenis's scroll events. */
-export function useLenis(): Lenis | null {
-  return useContext(LenisContext);
-}
 
 /**
  * Smooths native scroll input — never hijacks it. Disabled entirely under
@@ -19,8 +12,6 @@ export function useLenis(): Lenis | null {
  */
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const reducedMotion = useReducedMotion();
-  const lenisRef = useRef<Lenis | null>(null);
-  const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -30,8 +21,6 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
     });
-    lenisRef.current = lenis;
-    setLenisInstance(lenis);
 
     let frame: number;
     function raf(time: number) {
@@ -43,10 +32,8 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     return () => {
       cancelAnimationFrame(frame);
       lenis.destroy();
-      lenisRef.current = null;
-      setLenisInstance(null);
     };
   }, [reducedMotion]);
 
-  return <LenisContext.Provider value={lenisInstance}>{children}</LenisContext.Provider>;
+  return <>{children}</>;
 }
