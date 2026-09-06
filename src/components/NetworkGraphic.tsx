@@ -9,6 +9,16 @@ const ORBITS = [
   { radius: 128, size: 6, color: 'var(--magenta)', duration: 26, direction: 1, angle: 260 },
 ] as const;
 
+// Every connecting line cycles through this palette, each starting at a
+// different point in the loop so they don't all switch at once — it reads
+// as a live network re-routing itself rather than one synced blink.
+const LINE_COLORS: [string, string, string, string] = [
+  'var(--cyan)',
+  'var(--violet)',
+  'var(--magenta)',
+  'var(--bone)',
+];
+
 /**
  * A tasteful SVG standing in for an automated system — a core hub with
  * nodes in continuous, layered orbit around it, each ring a different
@@ -63,10 +73,30 @@ export function NetworkGraphic({ className }: { className?: string }) {
               y1={cy}
               x2={cx + orbit.radius}
               y2={cy}
-              stroke="currentColor"
-              strokeOpacity={0.2}
+              stroke={reducedMotion ? 'currentColor' : LINE_COLORS[0]}
+              strokeOpacity={0.35}
               strokeWidth={1.2}
-            />
+            >
+              {!reducedMotion && (
+                <>
+                  <animate
+                    attributeName="stroke"
+                    values={[...LINE_COLORS, LINE_COLORS[0]].join(';')}
+                    dur="8s"
+                    begin={`${-i * 2.2}s`}
+                    calcMode="discrete"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="stroke-opacity"
+                    values="0.35;0.9;0.35;0.35;0.35;0.35;0.35;0.35"
+                    dur="8s"
+                    begin={`${-i * 2.2}s`}
+                    repeatCount="indefinite"
+                  />
+                </>
+              )}
+            </line>
             <circle cx={cx + orbit.radius} cy={cy} r={orbit.size} fill={orbit.color} fillOpacity={0.95}>
               {!reducedMotion && (
                 <animate
