@@ -1,87 +1,102 @@
+'use client';
+
+import { useReducedMotion } from '@/lib/useReducedMotion';
 import { cn } from '@/lib/utils';
 
+const ORBITS = [
+  { radius: 60, size: 7, color: 'var(--cyan)', duration: 14, direction: 1, angle: 20 },
+  { radius: 95, size: 8, color: 'var(--violet)', duration: 20, direction: -1, angle: 160 },
+  { radius: 128, size: 6, color: 'var(--magenta)', duration: 26, direction: 1, angle: 260 },
+] as const;
+
 /**
- * A tasteful SVG standing in for connected systems / APIs / workflow
- * automation — deliberately lightweight (no WebGL). The connections draw in
- * once on load and each node holds a slow, gentle pulse — motion that reads
- * as "live system," not a distracting background loop.
+ * A tasteful SVG standing in for an automated system — a core hub with
+ * nodes in continuous, layered orbit around it, each ring a different
+ * speed and direction. Uses native SVG SMIL animation (animateTransform)
+ * rather than CSS transforms, which some render engines don't apply to
+ * SVG <g> elements — SMIL is the reliable, universally-supported path.
+ * Skipped entirely under prefers-reduced-motion.
  */
 export function NetworkGraphic({ className }: { className?: string }) {
-  const nodes = [
-    { x: 60, y: 40, r: 7, color: 'var(--cyan)' },
-    { x: 200, y: 30, r: 6, color: 'var(--violet)' },
-    { x: 260, y: 110, r: 8, color: 'var(--magenta)' },
-    { x: 40, y: 140, r: 6, color: 'var(--violet)' },
-    { x: 150, y: 170, r: 9, color: 'var(--cyan)' },
-    { x: 220, y: 190, r: 5, color: 'var(--bone)' },
-  ];
-  const pairs: Array<[number, number]> = [
-    [0, 1],
-    [1, 2],
-    [1, 4],
-    [0, 3],
-    [3, 4],
-    [4, 5],
-    [2, 5],
-  ];
-  const edges = pairs
-    .map(([a, b]) => {
-      const from = nodes[a];
-      const to = nodes[b];
-      return from && to ? { from, to } : null;
-    })
-    .filter((edge): edge is { from: (typeof nodes)[number]; to: (typeof nodes)[number] } => edge !== null);
+  const reducedMotion = useReducedMotion();
+  const cx = 150;
+  const cy = 150;
 
   return (
     <svg
-      viewBox="0 0 300 220"
+      viewBox="0 0 300 300"
       fill="none"
       className={cn('h-auto w-full overflow-visible', className)}
       role="img"
-      aria-label="Diagram of connected nodes representing APIs and automated workflows"
+      aria-label="Diagram of nodes orbiting a central hub, representing an automated, connected system"
     >
-      {edges.map(({ from, to }, i) => {
-        const length = Math.hypot(to.x - from.x, to.y - from.y);
-        return (
-          <line
-            key={i}
-            x1={from.x}
-            y1={from.y}
-            x2={to.x}
-            y2={to.y}
-            stroke="currentColor"
-            strokeOpacity={0.25}
-            strokeWidth={1.5}
-            strokeDasharray={length}
-            strokeDashoffset={length}
-            className="motion-safe:animate-[draw-line_1s_ease-out_forwards]"
-            style={{ animationDelay: `${i * 0.12}s` }}
-          />
-        );
-      })}
-      {nodes.map((n, i) => (
+      {ORBITS.map((orbit, i) => (
         <circle
-          key={i}
-          cx={n.x}
-          cy={n.y}
-          r={n.r}
-          fill={n.color}
-          fillOpacity={0.9}
-          className="motion-safe:animate-[node-pulse_4s_ease-in-out_infinite]"
-          style={{ transformOrigin: `${n.x}px ${n.y}px`, animationDelay: `${i * 0.4}s` }}
+          key={`ring-${i}`}
+          cx={cx}
+          cy={cy}
+          r={orbit.radius}
+          stroke="currentColor"
+          strokeOpacity={0.15}
+          strokeWidth={1}
+          strokeDasharray="3 6"
         />
       ))}
+
+      {ORBITS.map((orbit, i) => {
+        const from = orbit.angle;
+        const to = orbit.angle + 360 * orbit.direction;
+        return (
+          <g key={`orbit-${i}`} transform={reducedMotion ? `rotate(${from} ${cx} ${cy})` : undefined}>
+            {!reducedMotion && (
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from={`${from} ${cx} ${cy}`}
+                to={`${to} ${cx} ${cy}`}
+                dur={`${orbit.duration}s`}
+                repeatCount="indefinite"
+              />
+            )}
+            <line
+              x1={cx}
+              y1={cy}
+              x2={cx + orbit.radius}
+              y2={cy}
+              stroke="currentColor"
+              strokeOpacity={0.2}
+              strokeWidth={1.2}
+            />
+            <circle cx={cx + orbit.radius} cy={cy} r={orbit.size} fill={orbit.color} fillOpacity={0.95}>
+              {!reducedMotion && (
+                <animate
+                  attributeName="r"
+                  values={`${orbit.size};${orbit.size * 1.3};${orbit.size}`}
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              )}
+            </circle>
+          </g>
+        );
+      })}
+
       <rect
-        x={110}
-        y={90}
-        width={40}
-        height={40}
-        rx={8}
-        transform="rotate(45 130 110)"
+        x={cx - 16}
+        y={cy - 16}
+        width={32}
+        height={32}
+        rx={7}
+        transform={`rotate(45 ${cx} ${cy})`}
         stroke="currentColor"
-        strokeOpacity={0.4}
+        strokeOpacity={0.5}
         strokeWidth={1.5}
       />
+      <circle cx={cx} cy={cy} r={5} fill="var(--bone)">
+        {!reducedMotion && (
+          <animate attributeName="r" values="5;6.5;5" dur="3s" repeatCount="indefinite" />
+        )}
+      </circle>
     </svg>
   );
 }
