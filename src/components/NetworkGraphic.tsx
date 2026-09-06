@@ -3,29 +3,32 @@
 import { useReducedMotion } from '@/lib/useReducedMotion';
 import { cn } from '@/lib/utils';
 
+// SMIL animations read the raw attribute value, not the CSS cascade, so
+// these are hex literals rather than var(--cyan) — a CSS custom property
+// inside an <animate> values list silently fails to resolve.
+const CYAN = '#3DE0E8';
+const VIOLET = '#7B4DFF';
+const MAGENTA = '#E0389B';
+const BONE = '#EDEAF5';
+
 const ORBITS = [
-  { radius: 60, size: 7, color: 'var(--cyan)', duration: 14, direction: 1, angle: 20 },
-  { radius: 95, size: 8, color: 'var(--violet)', duration: 20, direction: -1, angle: 160 },
-  { radius: 128, size: 6, color: 'var(--magenta)', duration: 26, direction: 1, angle: 260 },
+  { radius: 60, size: 7, color: CYAN, duration: 14, direction: 1, angle: 20, packetDur: 2.2 },
+  { radius: 95, size: 8, color: VIOLET, duration: 20, direction: -1, angle: 160, packetDur: 2.8 },
+  { radius: 128, size: 6, color: MAGENTA, duration: 26, direction: 1, angle: 260, packetDur: 3.4 },
 ] as const;
 
 // Every connecting line cycles through this palette, each starting at a
 // different point in the loop so they don't all switch at once — it reads
 // as a live network re-routing itself rather than one synced blink.
-const LINE_COLORS: [string, string, string, string] = [
-  'var(--cyan)',
-  'var(--violet)',
-  'var(--magenta)',
-  'var(--bone)',
-];
+const LINE_COLORS: [string, string, string, string] = [CYAN, VIOLET, MAGENTA, BONE];
 
 /**
  * A tasteful SVG standing in for an automated system — a core hub with
- * nodes in continuous, layered orbit around it, each ring a different
- * speed and direction. Uses native SVG SMIL animation (animateTransform)
- * rather than CSS transforms, which some render engines don't apply to
- * SVG <g> elements — SMIL is the reliable, universally-supported path.
- * Skipped entirely under prefers-reduced-motion.
+ * nodes in continuous, layered orbit around it, connecting lines that
+ * cycle color on a staggered timer, and small "data packet" pulses that
+ * travel each spoke from hub to node — a live, re-routing network rather
+ * than a static diagram. Pure SVG SMIL (no WebGL, no CSS transform
+ * dependence), and skipped entirely under prefers-reduced-motion.
  */
 export function NetworkGraphic({ className }: { className?: string }) {
   const reducedMotion = useReducedMotion();
@@ -38,7 +41,7 @@ export function NetworkGraphic({ className }: { className?: string }) {
       fill="none"
       className={cn('h-auto w-full overflow-visible', className)}
       role="img"
-      aria-label="Diagram of nodes orbiting a central hub, representing an automated, connected system"
+      aria-label="Animated diagram of nodes orbiting a central hub, connected by lines that shift color, representing a live automated system"
     >
       {ORBITS.map((orbit, i) => (
         <circle
@@ -73,7 +76,7 @@ export function NetworkGraphic({ className }: { className?: string }) {
               y1={cy}
               x2={cx + orbit.radius}
               y2={cy}
-              stroke={reducedMotion ? 'currentColor' : LINE_COLORS[0]}
+              stroke={LINE_COLORS[0]}
               strokeOpacity={0.35}
               strokeWidth={1.2}
             >
@@ -89,7 +92,8 @@ export function NetworkGraphic({ className }: { className?: string }) {
                   />
                   <animate
                     attributeName="stroke-opacity"
-                    values="0.35;0.9;0.35;0.35;0.35;0.35;0.35;0.35"
+                    values="0.35;0.9;0.35"
+                    keyTimes="0;0.1;1"
                     dur="8s"
                     begin={`${-i * 2.2}s`}
                     repeatCount="indefinite"
@@ -97,6 +101,27 @@ export function NetworkGraphic({ className }: { className?: string }) {
                 </>
               )}
             </line>
+
+            {/* A small packet of light travels the spoke, hub to node and back — the "data flowing through the system" read. */}
+            {!reducedMotion && (
+              <circle r={2.5} fill={BONE}>
+                <animateMotion
+                  path={`M${cx},${cy} L${cx + orbit.radius},${cy} L${cx},${cy}`}
+                  dur={`${orbit.packetDur}s`}
+                  begin={`${-i * 0.6}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  values="0;1;1;0"
+                  keyTimes="0;0.1;0.9;1"
+                  dur={`${orbit.packetDur}s`}
+                  begin={`${-i * 0.6}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            )}
+
             <circle cx={cx + orbit.radius} cy={cy} r={orbit.size} fill={orbit.color} fillOpacity={0.95}>
               {!reducedMotion && (
                 <animate
@@ -122,7 +147,7 @@ export function NetworkGraphic({ className }: { className?: string }) {
         strokeOpacity={0.5}
         strokeWidth={1.5}
       />
-      <circle cx={cx} cy={cy} r={5} fill="var(--bone)">
+      <circle cx={cx} cy={cy} r={5} fill={BONE}>
         {!reducedMotion && (
           <animate attributeName="r" values="5;6.5;5" dur="3s" repeatCount="indefinite" />
         )}
